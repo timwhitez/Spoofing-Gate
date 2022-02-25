@@ -1,6 +1,7 @@
 # Spoofing-Gate
 (Hellsgate|Halosgate|Tartarosgate)+Spoofing-Gate. Ensures that all systemcalls go through ntdll.dll
 
+https://github.com/timwhitez/Doge-Gabh
 
 - get sysid from "X"gate
 
