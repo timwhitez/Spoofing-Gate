@@ -117,22 +117,6 @@ func WriteMemory(inbuf []byte, destination uintptr) {
 	}
 }
 
-func str2sha1(s string) string{
-	h := sha1.New()
-	h.Write([]byte(s))
-	bs := h.Sum(nil)
-	return fmt.Sprintf("%x", bs)
-}
-
-func Sha256Hex(s string)string{
-	return hex.EncodeToString(Sha256([]byte(s)))
-}
-
-func Sha256(data []byte)[]byte{
-	digest:=sha256.New()
-	digest.Write(data)
-	return digest.Sum(nil)
-}
 
 
 func createThread(shellcode []byte, handle uintptr, NtAllocateVirtualMemorySysid, NtProtectVirtualMemorySysid, NtCreateThreadExSysid *spfgate.SPFG) {
