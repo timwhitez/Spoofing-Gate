@@ -38,6 +38,7 @@ func strin(target string, str_array []string) bool {
 func SpfGate(sysid uint16,none []string) (*SPFG,error){
 	newfcg := new(SPFG)
 	apilen := len(apiconst)
+	newfcg.Fakeid = sysid
 
 	s := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(s) // initialize local pseudorandom generator
@@ -63,8 +64,6 @@ func SpfGate(sysid uint16,none []string) (*SPFG,error){
 			windows.WriteProcessMemory(0xffffffffffffffff,tmpApi+4,(*byte)(unsafe.Pointer(&sysid)),2,nil)
 			newfcg.Pointer = tmpApi
 			newfcg.Fakename = apiconst[idx]
-			newfcg.Fakeid = sysid
-
 			return newfcg,nil
 		}
 		i++
