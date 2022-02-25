@@ -3,6 +3,13 @@
 
 https://github.com/timwhitez/Doge-Gabh
 
+
+inspired by Recycled Gate
+
+https://github.com/thefLink/RecycledGate
+
+
+
 - get sysid from "X"gate
 
 - use Spoofing-Gate to get the Spoofing funtion pointer
