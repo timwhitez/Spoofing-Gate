@@ -9,6 +9,8 @@ inspired by Recycled Gate
 https://github.com/thefLink/RecycledGate
 
 
+exclude apis in https://github.com/Mr-Un1k0d3r/EDRs
+
 
 - get sysid from "X"gate
 
