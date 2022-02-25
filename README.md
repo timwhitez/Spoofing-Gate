@@ -11,6 +11,19 @@
 - Recover
 
 ```
+> .\SpfGate.exe
+messPtr:0x7ff91ee2e570
+Messed up the NTCreateThreadEx function, gl launching calc!
+NtAllocateVirtualMemory|(fake)NtQueryInformationTransactionManager: 0x7ff91ee2f710
+NtProtectVirtualMemory|(fake)NtEnumerateBootEntries: 0x7ff91ee2e910
+You seem to have bypassed a hooked function... congrats (sys ID is: 193)
+NtCreateThreadEx|(fake)NtCallbackReturn: 0x7ff91ee2ce00
+
+```
+
+
+
+```
 //get sysid from "X"gate
 alloc,e := gabh.MemHgate(str2sha1("NtAllocateVirtualMemory"),str2sha1)
 	if e != nil {
