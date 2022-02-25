@@ -1,13 +1,14 @@
 package spfgate
 
 import (
+	"crypto/sha1"
 	"fmt"
 	"math/rand"
 	"sort"
-	"syscall"
 	"time"
 	"unsafe"
 
+	"github.com/timwhitez/Doge-Gabh/pkg/Gabh"
 	"golang.org/x/sys/windows"
 )
 
@@ -35,6 +36,14 @@ func strin(target string, str_array []string) bool {
 	return false
 }
 
+func str2sha1(s string) string {
+	h := sha1.New()
+	h.Write([]byte(s))
+	bs := h.Sum(nil)
+	return fmt.Sprintf("%x", bs)
+}
+
+
 func SpfGate(sysid uint16,none []string) (*SPFG,error){
 	newfcg := new(SPFG)
 	apilen := len(apiconst)
@@ -50,18 +59,16 @@ func SpfGate(sysid uint16,none []string) (*SPFG,error){
 		for strin(apiconst[idx],none){
 			idx = r.Intn(len(apiconst))
 		}
-		nt,e := syscall.LoadLibrary(string([]byte{'n','t','d','l','l','.','d','l','l'}))
-		if e != nil{
-			return nil,fmt.Errorf("load dll err")
-		}
-		tmpApi,e := syscall.GetProcAddress(nt,apiconst[idx])
-		if e != nil{
+
+		api64,_,_ := gabh.MemFuncPtr(string([]byte{'n','t','d','l','l','.','d','l','l'}),str2sha1(apiconst[idx]),str2sha1)
+		if api64 == 0{
 			if i >= apilen{
-				return nil,fmt.Errorf("load dll err")
+				break
 			}
 			continue
 		}
-		
+		tmpApi := uintptr(api64)
+
 		if tmpApi == 0{
 			continue
 		}
