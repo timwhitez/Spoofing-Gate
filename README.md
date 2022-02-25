@@ -31,6 +31,31 @@ NtCreateThreadEx|(fake)NtCallbackReturn: 0x7ff91ee2ce00
 
 ```
 
+```
+
+方法使用详情：
+r1,e := spfgate.SpfGate(sysid,tmplist)
+
+sysid为目标api的sysid值
+tmplist是需要排除的api名字（部分api调用会报错或者冲突）
+r1为结构体
+
+type SPFG struct {
+	Fakename	string //随机api的名字
+	Pointer		uintptr //api地址
+	Fakeid		uint16 //替换后的sysid
+	Realid 		uint16	//替换前的sysid
+}
+
+结构体有个Recover()函数
+用来恢复api的原sysid
+r1.Recover()
+
+执行的时候就使用syscall执行r1.pointer
+
+
+```
+
 
 
 ```
