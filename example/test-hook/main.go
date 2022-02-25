@@ -1,9 +1,9 @@
 package main
 
 import (
-	"crypto/sha1"
-	"crypto/sha256"
-	"encoding/hex"
+	//"crypto/sha1"
+	//"crypto/sha256"
+	//"encoding/hex"
 	"fmt"
 	"syscall"
 	"unsafe"
