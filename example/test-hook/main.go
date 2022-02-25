@@ -97,7 +97,7 @@ func main() {
 	if e != nil{
 		panic(e)
 	}
-	fmt.Printf("You seem to have bypassed a hooked function... congrats (sys ID is: %d)\n", createthread)
+	fmt.Printf("You seem to have bypassed a hooked function... congrats (sys ID is: %d)\n", createtmp.Fakeid)
 
 	tmplist = append(tmplist,createtmp.Fakename)
 	fmt.Printf("NtCreateThreadEx|(fake)")
